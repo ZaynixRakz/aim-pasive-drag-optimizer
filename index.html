@@ -560,11 +560,39 @@ let engine=document.getElementById("engineScreen");
 
 let log=document.getElementById("engineLog");
 
-
 main.style.display="none";
 
 engine.classList.add("active");
 
+
+// DETEKSI DEVICE
+
+let iosVersion = "Unknown";
+
+let iosMatch = navigator.userAgent.match(/OS (\d+[_\d]*)/);
+
+if(iosMatch){
+    iosVersion = iosMatch[1].replace(/_/g,".");
+}
+
+let deviceName="Unknown";
+
+
+if(navigator.userAgent.includes("iPhone")){
+    deviceName="iPhone";
+}
+
+else if(navigator.userAgent.includes("iPad")){
+    deviceName="iPad";
+}
+
+else if(navigator.userAgent.includes("Android")){
+    deviceName="Android Device";
+}
+
+else{
+    deviceName=navigator.platform;
+}
 
 let text=`
 
@@ -572,28 +600,50 @@ let text=`
       ZAYNIX DEVICE ENGINE
 ════════════════════════════════
 
-Device Name : ${navigator.platform}
-Browser     : ${navigator.userAgent.substring(0,10)}
-Language    : ${navigator.language}
-Resolution  : ${screen.width} x ${screen.height}
+Device:
+${deviceName}
 
-[SYSTEM] Initializing...
-[SYSTEM] Reading device profile...
-[SYSTEM] Loading interface...
-[INFO] Browser compatibility OK
-[INFO] Screen resolution detected
-[INFO] Device language loaded
-[INFO] Theme configuration loaded
-[INFO] UI preferences synchronized
-[INFO] Rendering dashboard...
+User Agent:
+
+${navigator.userAgent}
+
+Platform:
+
+${navigator.platform}
+
+Language:
+
+${navigator.language}
+
+Resolution:
+
+${screen.width} x ${screen.height}
+
+iOS Version:
+
+${iosVersion}
+
+[SYSTEM] Initializing launcher...
+
+[SYSTEM] Loading configuration...
+
+[INFO] Browser detected...
+
+[INFO] Reading device information...
+
+[INFO] Preparing startup sequence...
+
+[INFO] Synchronizing preferences...
+
+[INFO] Verifying environment...
+
 [INFO] Finalizing startup...
-[SUCCESS] Dashboard Ready
+
+[SUCCESS] Launch completed
 
 `;
 
-
 let i=0;
-
 
 let typing=setInterval(()=>{
 
@@ -601,14 +651,14 @@ log.innerHTML += text[i];
 
 i++;
 
-
 if(i>=text.length){
 
 clearInterval(typing);
 
-setTimeout(function(){
+setTimeout(()=>{
 
 document.getElementById("gameMenuEngine").style.display="block";
+
 
 },500);
 
@@ -618,7 +668,6 @@ document.getElementById("gameMenuEngine").style.display="block";
 
 
 }
-
 
 function openFF(){
 
@@ -685,10 +734,6 @@ Select Game
 
 <button onclick="openFFMax()">
 🔥 Open Free Fire MAX
-</button>
-
-<button onclick="login()">
-🔐 Login
 </button>
 
 </div>
