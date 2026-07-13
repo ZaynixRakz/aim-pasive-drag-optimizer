@@ -703,9 +703,13 @@
 </div>
             </div>
             <div class="engineBox">
-                <pre id="engineLog"></pre>
-            </div>
-            <div class="engineMenu" id="gameMenuEngine">
+    <div class="engineTitle">
+        ZAYNIX DEVICE ENGINE
+    </div>
+
+    <pre id="engineLog"></pre>
+</div>
+<div class="engineMenu" id="gameMenuEngine">
                 <button onclick="openFF()">
                     <i class="fa-solid fa-gamepad"></i> Open Free Fire </button>
                 <br>
@@ -807,41 +811,38 @@
                 } else {
                     deviceName = navigator.platform;
                 }
-                engineText = `
-                ════════════════════════════
-                ZAYNIX DEVICE ENGINE
-                ════════════════════════════
+  engineText = `
+══════════════════════════════
+      ZAYNIX DEVICE ENGINE
+══════════════════════════════
 
-                DEVICE INFORMATION
+DEVICE INFORMATION
 
-                Device      : ${deviceName}
-                Platform    : ${navigator.platform}
-                Resolution  : ${screen.width} x ${screen.height}
-                Language    : ${navigator.language}
-                iOS Version : ${iosVersion}
+Device      : ${deviceName}
+Platform    : ${navigator.platform}
+Resolution  : ${screen.width} x ${screen.height}
+Language    : ${navigator.language}
+iOS Version : ${iosVersion}
 
+FEATURE STATUS
 
-                FEATURE STATUS
+[✓] Smooth Drag Interface
+[✓] Touch Response Monitor
+[✓] Sensitivity Preset
+[✓] FOV Display Control
+[✓] Performance Profile
 
-                [✓] Smooth Drag Interface
-                [✓] Touch Response Monitor
-                [✓] Sensitivity Preset
-                [✓] FOV Display Control
-                [✓] Performance Profile
+SYSTEM INITIALIZING...
 
+[INFO] Reading device data...
+[INFO] Checking configuration...
+[INFO] Loading engine modules...
+[INFO] Synchronizing settings...
+[INFO] Preparing interface...
+[INFO] Finalizing process...
 
-                SYSTEM INITIALIZING...
-
-                [INFO] Reading device data...
-                [INFO] Checking configuration...
-                [INFO] Loading engine modules...
-                [INFO] Synchronizing settings...
-                [INFO] Preparing interface...
-                [INFO] Finalizing process...
-
-                [SUCCESS] Engine Ready
-
-                `;
+[SUCCESS] Engine Ready
+`;
                 let index = 0;
                 typingTimer = setInterval(() => {
                     log.textContent += engineText.charAt(index);
