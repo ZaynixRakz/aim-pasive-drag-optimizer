@@ -573,7 +573,7 @@ let text=`
 ════════════════════════════════
 
 Device Name : ${navigator.platform}
-Browser     : ${navigator.userAgent.substring(0,30)}
+Browser     : ${navigator.userAgent.substring(0,10)}
 Language    : ${navigator.language}
 Resolution  : ${screen.width} x ${screen.height}
 
@@ -605,6 +605,12 @@ i++;
 if(i>=text.length){
 
 clearInterval(typing);
+
+setTimeout(function(){
+
+document.getElementById("gameMenuEngine").style.display="block";
+
+},500);
 
 }
 
@@ -641,6 +647,12 @@ value + "%";
 
 }
 
+function login(){
+
+alert("Login berhasil");
+
+}
+
 </script>
 
 <div class="container screen" id="engineScreen">
@@ -658,6 +670,26 @@ ZAYNIX DEVICE ENGINE
 <div class="engineBox">
 
 <pre id="engineLog"></pre>
+
+</div>
+
+<div class="card" id="gameMenuEngine" style="display:none;">
+
+<div class="title">
+Select Game
+</div>
+
+<button onclick="openFF()">
+🔥 Open Free Fire
+</button>
+
+<button onclick="openFFMax()">
+🔥 Open Free Fire MAX
+</button>
+
+<button onclick="login()">
+🔐 Login
+</button>
 
 </div>
 
