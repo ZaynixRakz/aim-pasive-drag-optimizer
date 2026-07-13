@@ -453,18 +453,19 @@
         }
 
         .engineBox {
-            margin: 20px;
-            flex: 1;
-            background: #111;
-            border: 1px solid #3b3b3b;
-            border-radius: 18px;
-            padding: 18px;
-            overflow: auto;
-            font-family: monospace;
-            color: #54ff91;
-            font-size: 13px;
-            line-height: 20px;
-        }
+    margin: 20px;
+    min-height: 320px;
+    flex: 1;
+    background: #111;
+    border: 1px solid #3b3b3b;
+    border-radius: 18px;
+    padding: 18px;
+    overflow: auto;
+    font-family: monospace;
+    color: #54ff91;
+    font-size: 13px;
+    line-height: 20px;
+}
 
         .engineBox::-webkit-scrollbar {
             width: 5px;
@@ -530,6 +531,18 @@
                 background: #111;
             }
         }
+       
+       .featureItem {
+    background:#151515;
+    border:1px solid #333;
+    font-family:monospace;
+    color:#54ff91;
+    letter-spacing:.5px;
+}
+.featureItem i {
+    color:#4da3ff;
+}
+        
     </style>
 </head>
 
@@ -644,31 +657,44 @@
             <div class="engineHeader">
                 <div class="logo"> RZ </div>
                 <h1> ZAYNIX DEVICE ENGINE </h1>
-                <div class="online"> ● Engine Online </div>
+                <div class="online"> ● Aim Engine Online </div>
             </div>
             <div class="card" style="margin:20px;">
                 <div class="cardTitle">
                     <i class="fa-solid fa-layer-group"></i> Features
                 </div>
-                <div class="featureList">
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> Smooth Drag Interface
-                    </div>
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> Touch Response Monitor
-                    </div>
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> Sensitivity Preset
-                    </div>
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> FOV Display Control
-                    </div>
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> Performance Profile
-                    </div>
-                    <div class="featureItem">
-                        <i class="fa-solid fa-check"></i> Zaynix Engine Interface
-                    </div>
+        <div class="featureList">
+
+<div class="featureItem">
+<i class="fa-solid fa-terminal"></i>
+[AIM] Drag Calibration System
+</div>
+
+<div class="featureItem">
+<i class="fa-solid fa-code"></i>
+[CORE] Touch Response Module
+</div>
+
+<div class="featureItem">
+<i class="fa-solid fa-microchip"></i>
+[SYSTEM] Performance Analyzer
+</div>
+
+<div class="featureItem">
+<i class="fa-solid fa-crosshairs"></i>
+[AIM] Configuration Loaded
+</div>
+
+<div class="featureItem">
+<i class="fa-solid fa-bolt"></i>
+[ENGINE] Optimization Ready
+</div>
+
+<div class="featureItem">
+<i class="fa-solid fa-circle-check"></i>
+[STATUS] All Module Active
+</div>
+</div>
                 </div>
             </div>
             <div class="engineBox">
@@ -822,7 +848,7 @@
                             gameMenu.style.display = "block";
                         }, 500);
                     }
-                }, 15);
+                }, 4);
             }
             // OPEN GAME
             function openFF() {
