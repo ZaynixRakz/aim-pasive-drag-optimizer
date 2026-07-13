@@ -93,9 +93,6 @@ font-size:14px;
 
 }
 
-
-
-
 .setting{
 
 display:flex;
@@ -159,22 +156,18 @@ transition:.3s;
 
 }
 
-
-
 input:checked + .slider{
 
-background:#0066ff;
+background:#00ff99;
+box-shadow:0 0 10px #00ff99;
 
 }
-
 
 input:checked + .slider:before{
 
 transform:translateX(25px);
 
 }
-
-
 
 
 .progress{
@@ -189,7 +182,6 @@ overflow:hidden;
 
 }
 
-
 .bar{
 
 height:100%;
@@ -201,8 +193,6 @@ background:#00ff99;
 transition:.3s;
 
 }
-
-
 
 
 button{
@@ -266,7 +256,6 @@ animation:slide .4s;
 display:block;
 }
 
-
 @keyframes slide{
 
 from{
@@ -299,9 +288,7 @@ font-size:12px;
 
 </head>
 
-
 <body>
-
 
 <div class="container screen active" id="mainScreen">
 
@@ -318,9 +305,6 @@ AIM PASIVE DRAG OPTIMIZER
 <div class="online">
 ● Status Online
 </div>
-
-
-
 
 <div class="card">
 
@@ -360,10 +344,6 @@ Platform :
 </div>
 
 
-
-
-
-
 <div class="card">
 
 <div class="title">
@@ -377,8 +357,11 @@ Settings
 Easy Drag
 
 <label class="switch">
+
 <input type="checkbox">
+
 <span class="slider"></span>
+
 </label>
 
 </div>
@@ -391,11 +374,18 @@ Easy Drag
 Easy Lock
 
 <label class="switch">
+
 <input type="checkbox">
+
 <span class="slider"></span>
+
 </label>
 
 </div>
+
+
+
+
 <div class="setting">
 
 Ratio HS %
@@ -405,6 +395,7 @@ Ratio HS %
 </span>
 
 </div>
+
 
 
 <input 
@@ -419,9 +410,10 @@ width:100%;
 height:10px;
 border-radius:20px;
 background:#222;
-accent-color:#007aff;
+accent-color:#00ff99;
 cursor:pointer;
 ">
+
 
 
 <div style="
@@ -438,8 +430,69 @@ margin-top:8px;
 
 </div>
 
+
+
+
+
+<div class="setting">
+
+Aim FOV
+
+<span id="fovValue">
+180°
+</span>
+
 </div>
 
+
+
+<input 
+type="range"
+id="fovRange"
+min="0"
+max="360"
+value="180"
+oninput="updateFOV()"
+style="
+width:100%;
+height:10px;
+border-radius:20px;
+background:#222;
+accent-color:#00ffff;
+cursor:pointer;
+">
+
+
+
+<div style="
+display:flex;
+justify-content:space-between;
+font-size:12px;
+color:#777;
+margin-top:8px;
+">
+
+<span>0°</span>
+
+<span>360°</span>
+
+</div>
+
+<div class="setting">
+
+Engine Bypass
+
+<label class="switch">
+
+<input type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
 
 <div class="card">
 
@@ -491,9 +544,6 @@ Select Game
 
 
 </div>
-
-
-
 
 
 
@@ -602,43 +652,25 @@ let text=`
 
 Device:
 ${deviceName}
-
 User Agent:
-
 ${navigator.userAgent}
-
 Platform:
-
 ${navigator.platform}
-
 Language:
-
 ${navigator.language}
-
 Resolution:
-
 ${screen.width} x ${screen.height}
-
 iOS Version:
-
 ${iosVersion}
 
 [SYSTEM] Initializing launcher...
-
 [SYSTEM] Loading configuration...
-
 [INFO] Browser detected...
-
 [INFO] Reading device information...
-
 [INFO] Preparing startup sequence...
-
 [INFO] Synchronizing preferences...
-
 [INFO] Verifying environment...
-
 [INFO] Finalizing startup...
-
 [SUCCESS] Launch completed
 
 `;
@@ -664,7 +696,7 @@ document.getElementById("gameMenuEngine").style.display="block";
 
 }
 
-},30);
+},10);
 
 
 }
@@ -684,21 +716,45 @@ window.location.href=
 
 }
 
-
 function updateHS(){
 
 let value =
 document.getElementById("hsRange").value;
-
 
 document.getElementById("hsValue").innerHTML =
 value + "%";
 
 }
 
+function updateFOV(){
+
+let value =
+document.getElementById("fovRange").value;
+
+
+document.getElementById("fovValue").innerHTML =
+value + "°";
+
+}
+
 function login(){
 
 alert("Login berhasil");
+
+}
+
+function backHome(){
+
+let main=document.getElementById("mainScreen");
+
+let engine=document.getElementById("engineScreen");
+
+engine.classList.remove("active");
+
+engine.style.display="none";
+
+
+main.style.display="block";
 
 }
 
@@ -734,6 +790,11 @@ Select Game
 
 <button onclick="openFFMax()">
 🔥 Open Free Fire MAX
+</button>
+
+<button onclick="backHome()" 
+style="background:#333;">
+⬅ Back To Settings
 </button>
 
 </div>
