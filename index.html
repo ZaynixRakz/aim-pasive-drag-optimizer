@@ -7,33 +7,618 @@
 
 <title>AIM PASIVE DRAG OPTIMIZER</title>
 
-<link rel="apple-touch-icon" href="icon.png">
-
 <style>
 
-* {
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+*{
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
-body {
-    margin:0;
-    min-height:100vh;
-    background:#050505;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+body{
+margin:0;
+min-height:100vh;
+background:#050505;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 
-.container {
-    width:90%;
-    max-width:420px;
-    background:#111;
-    padding:25px;
-    border-radius:25px;
-    text-align:center;
+.container{
+width:90%;
+max-width:420px;
+background:#111;
+padding:25px;
+border-radius:25px;
+box-shadow:0 0 30px #0066ff;
+}
+
+
+.logo{
+width:90px;
+height:90px;
+margin:auto;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+background:linear-gradient(135deg,#00ffff,#0066ff);
+
+font-size:30px;
+font-weight:bold;
+}
+
+
+h1{
+text-align:center;
+font-size:23px;
+}
+
+
+.online{
+text-align:center;
+color:#00ff99;
+margin:15px;
+}
+
+
+
+.card{
+
+background:#080808;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+
+}
+
+
+.title{
+
+color:#00ffff;
+font-weight:bold;
+margin-bottom:10px;
+
+}
+
+
+
+.info{
+
+line-height:25px;
+font-size:14px;
+
+}
+
+
+
+
+.setting{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:15px 0;
+
+}
+
+
+
+.switch{
+
+position:relative;
+width:50px;
+height:25px;
+
+}
+
+
+.switch input{
+display:none;
+}
+
+
+.slider{
+
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:#555;
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+
+.slider:before{
+
+content:"";
+
+position:absolute;
+
+height:19px;
+width:19px;
+
+left:3px;
+bottom:3px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.3s;
+
+}
+
+
+
+input:checked + .slider{
+
+background:#0066ff;
+
+}
+
+
+input:checked + .slider:before{
+
+transform:translateX(25px);
+
+}
+
+
+
+
+.progress{
+
+height:15px;
+
+background:#222;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+.bar{
+
+height:100%;
+
+width:0%;
+
+background:#00ff99;
+
+transition:.3s;
+
+}
+
+
+
+
+button{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:#0066ff;
+
+color:white;
+
+font-weight:bold;
+
+font-size:16px;
+
+}
+
+
+
+button:hover{
+
+background:#0088ff;
+
+}
+
+
+
+#gameMenu{
+
+display:none;
+
+}
+
+
+.footer{
+
+text-align:center;
+
+color:#555;
+
+font-size:12px;
+
+margin-top:20px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="logo">
+RZ
+</div>
+
+
+<h1>
+AIM PASIVE DRAG OPTIMIZER
+</h1>
+
+
+<div class="online">
+● Status Online
+</div>
+
+
+
+
+<div class="card">
+
+<div class="title">
+Device Info
+</div>
+
+
+<div class="info">
+
+Device :
+<span id="device"></span>
+
+<br>
+
+Browser :
+<span id="browser"></span>
+
+<br>
+
+Resolution :
+<span id="resolution"></span>
+
+<br>
+
+Language :
+<span id="language"></span>
+
+<br>
+
+Platform :
+<span id="platform"></span>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="card">
+
+<div class="title">
+Settings
+</div>
+
+
+
+<div class="setting">
+
+Easy Drag
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+
+
+<div class="setting">
+
+Easy Lock
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+
+
+<div class="setting">
+
+Animation
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<div class="title">
+System
+</div>
+
+
+<div class="progress">
+
+<div class="bar" id="bar"></div>
+
+</div>
+
+
+<p id="loading">
+Ready
+</p>
+
+
+<p id="status">
+Waiting Launch
+</p>
+
+
+
+<button onclick="launch()">
+LAUNCH
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card" id="gameMenu">
+
+
+<div class="title">
+Select Game
+</div>
+
+
+<button onclick="openFF()">
+🔥 Open Free Fire
+</button>
+
+
+<button onclick="openFFMax()">
+🔥 Open Free Fire MAX
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<div class="title">
+About
+</div>
+
+
+<p>
+Versi : 1.0.0
+</p>
+
+
+<p>
+Developer : RakzZaynix
+</p>
+
+
+<p>
+Copyright © RakzZaynix
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+// DEVICE INFO
+
+device.innerHTML=navigator.platform;
+
+browser.innerHTML=navigator.userAgent;
+
+resolution.innerHTML=
+screen.width+" x "+screen.height;
+
+language.innerHTML=
+navigator.language;
+
+platform.innerHTML=
+navigator.platform;
+
+
+
+
+
+
+function launch(){
+
+
+let progress=0;
+
+let bar=document.getElementById("bar");
+
+let loading=document.getElementById("loading");
+
+let status=document.getElementById("status");
+
+let menu=document.getElementById("gameMenu");
+
+
+
+let timer=setInterval(()=>{
+
+
+progress+=10;
+
+
+bar.style.width=
+progress+"%";
+
+
+loading.innerHTML=
+"Loading "+progress+"%";
+
+
+
+if(progress==30){
+
+status.innerHTML=
+"Checking Settings";
+
+}
+
+
+if(progress==60){
+
+status.innerHTML=
+"Optimizing";
+
+}
+
+
+if(progress==90){
+
+status.innerHTML=
+"Preparing Launcher";
+
+}
+
+
+
+
+if(progress>=100){
+
+
+clearInterval(timer);
+
+
+loading.innerHTML=
+"Completed";
+
+
+status.innerHTML=
+"Select Game";
+
+
+menu.style.display=
+"block";
+
+
+}
+
+
+
+},300);
+
+
+}
+
+
+
+
+
+
+function openFF(){
+
+window.location.href=
+"freefire://";
+
+}
+
+
+
+
+
+function openFFMax(){
+
+window.location.href=
+"freefiremax://";
+
+}
+
+
+</script>
+
+
+</body>
+</html>
     box-shadow:0 0 30px #0066ff;
 }
 
