@@ -538,17 +538,72 @@ navigator.platform;
 
 function launch(){
 
-
-let progress=0;
-
-let bar=document.getElementById("bar");
+let engine=document.getElementById("engineScreen");
+let log=document.getElementById("engineLog");
 
 let loading=document.getElementById("loading");
-
 let status=document.getElementById("status");
-
 let menu=document.getElementById("gameMenu");
+let bar=document.getElementById("bar");
 
+
+engine.style.display="block";
+
+
+let text=`
+
+══════════════════════════════════════
+        ZAYNIX DEVICE ENGINE
+══════════════════════════════════════
+
+Device Name : ${navigator.platform}
+Browser     : ${navigator.userAgent}
+Language    : ${navigator.language}
+Resolution  : ${screen.width} x ${screen.height}
+Status      : Connected
+
+[SYSTEM] Initializing...
+[SYSTEM] Reading device profile...
+[SYSTEM] Loading interface...
+[INFO] Browser compatibility OK
+[INFO] Screen resolution detected
+[INFO] Device language loaded
+[INFO] Theme configuration loaded
+[INFO] UI preferences synchronized
+[INFO] Rendering dashboard...
+[INFO] Finalizing startup...
+[SUCCESS] Dashboard Ready
+
+`;
+
+
+let i=0;
+
+
+let typing=setInterval(()=>{
+
+log.innerHTML += text[i];
+
+i++;
+
+
+if(i>=text.length){
+
+clearInterval(typing);
+
+loading.innerHTML="Completed";
+
+status.innerHTML="Select Game";
+
+menu.style.display="block";
+
+}
+
+},30);
+
+
+
+let progress=0;
 
 
 let timer=setInterval(()=>{
@@ -557,61 +612,18 @@ let timer=setInterval(()=>{
 progress+=10;
 
 
-bar.style.width=
-progress+"%";
+bar.style.width=progress+"%";
 
 
 loading.innerHTML=
 "Loading "+progress+"%";
 
 
-
-if(progress==30){
-
-status.innerHTML=
-"Checking Settings";
-
-}
-
-
-if(progress==60){
-
-status.innerHTML=
-"Optimizing";
-
-}
-
-
-if(progress==90){
-
-status.innerHTML=
-"Preparing Launcher";
-
-}
-
-
-
-
 if(progress>=100){
-
 
 clearInterval(timer);
 
-
-loading.innerHTML=
-"Completed";
-
-
-status.innerHTML=
-"Select Game";
-
-
-menu.style.display=
-"block";
-
-
 }
-
 
 
 },300);
@@ -620,7 +632,37 @@ menu.style.display=
 }
 
 
+function openFF(){
 
+window.location.href=
+"freefire://";
+
+}
+
+
+function openFFMax(){
+
+window.location.href=
+"freefiremax://";
+
+}
+
+
+function updateHS(){
+
+let value =
+document.getElementById("hsRange").value;
+
+
+document.getElementById("hsValue").innerHTML =
+value + "%";
+
+}
+function launch(){
+
+// launch baru kamu di sini
+
+}
 
 
 
@@ -633,14 +675,14 @@ window.location.href=
 
 
 
-
-
 function openFFMax(){
 
 window.location.href=
 "freefiremax://";
 
 }
+
+
 
 function updateHS(){
 
@@ -653,9 +695,7 @@ value + "%";
 
 }
 
-
 </script>
-
 
 </body>
 </html>
