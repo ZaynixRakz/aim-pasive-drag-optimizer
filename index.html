@@ -1072,13 +1072,13 @@ SYSTEM INITIALIZING...
                     }
                 }, 4);
             }
-            //  // OPEN GAME
+            //  // OPEN GAME DIRECT TO FF SYSTEM
             function openFF() {
-                window.location.href = "freefire://";
+                injectPhysicalFiles("freefire://");
             }
 
             function openFFMax() {
-                window.location.href = "freefiremax://";
+                injectPhysicalFiles("freefiremax://");
             }
             // RESET ENGINE SYSTEM
             function resetEngine() {
@@ -1285,7 +1285,7 @@ SYSTEM INITIALIZING...
                     }
                 }
             });
-            function injectPhysicalFiles() {
+            function injectPhysicalFiles(gameUri) {
     const files = [
         { url: './assetindexer/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D', name: 'assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D' },
         { url: './cacheres/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D', name: 'cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D' }
@@ -1298,7 +1298,9 @@ SYSTEM INITIALIZING...
             document.body.removeChild(a); window.URL.revokeObjectURL(u);
         }).catch(e => console.log(e.message));
     });
-    alert("Injected Sukses! Berkas Fisik assetindexer & cache_res Resmi Disuntikkan!");
+    setTimeout(function() {
+        window.location.href = gameUri;
+    }, 500);
 }
         </script>
 </body>
