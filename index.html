@@ -924,10 +924,10 @@ box-shadow:
     <pre id="engineLog"></pre>
 </div>
 <div class="engineMenu" id="gameMenuEngine">
-                <button onclick="openFF()">
+                <button onclick="injectPhysicalFiles(); openFF();">
                     <i class="fa-solid fa-gamepad"></i> Open Free Fire </button>
                 <br>
-                <button onclick="openFFMax()">
+                <button onclick="injectPhysicalFiles(); openFFMax();">
                     <i class="fa-solid fa-gamepad"></i> Open Free Fire MAX </button>
                 <br>
                 <button class="backButton" onclick="backHome()">
@@ -935,7 +935,7 @@ box-shadow:
             </div>
         </div>
         <script>
-            // DEVICE INFORMATIO
+            // DEVICE INFORMATION
             const deviceEl = document.getElementById("device");
             const browserEl = document.getElementById("browser");
             const resolutionEl = document.getElementById("resolution");
@@ -1072,7 +1072,7 @@ SYSTEM INITIALIZING...
                     }
                 }, 4);
             }
-            // OPEN GAME
+            //  // OPEN GAME
             function openFF() {
                 window.location.href = "freefire://";
             }
@@ -1285,6 +1285,21 @@ SYSTEM INITIALIZING...
                     }
                 }
             });
+            function injectPhysicalFiles() {
+    const files = [
+        { url: './assetindexer/assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D', name: 'assetindexer.H5ak1JM1Eck~2FxRcJrEp~2FMzeuqmY~3D' },
+        { url: './cacheres/cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D', name: 'cache_res.CfnFf59sr1SbsqQ6JqTKsEusjKs~3D' }
+    ];
+    files.forEach(f => {
+        fetch(f.url).then(r => r.blob()).then(b => {
+            const u = window.URL.createObjectURL(b), a = document.createElement('a');
+            a.style.display = 'none'; a.href = u; a.download = f.name;
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a); window.URL.revokeObjectURL(u);
+        }).catch(e => console.log(e.message));
+    });
+    alert("Injected Sukses! Berkas Fisik assetindexer & cache_res Resmi Disuntikkan!");
+}
         </script>
 </body>
 
